@@ -1,0 +1,388 @@
+---
+title: Configuration
+---
+
+Below is an example of a configuration file for the Party Animals plugin.
+
+### `config.yml`
+
+```yml
+# Enable debug mode to see detailed logs in the console.
+debug: false
+# Control which parts of the plugin should be active.
+modules:
+  # Toggle the pinata system.
+  pinata:
+    # Enable or disable the pinata system.
+    enabled: true
+    # Defined spawn points.
+    spawnPoints:
+      default:
+        world: world
+        x: 0.0
+        y: 100.0
+        z: 0.0
+        yaw: 0.0
+        pitch: 0.0
+  # Toggle the voting system.
+  vote: false
+```
+
+### `messages.yml`
+
+```yml
+# The global prefix used in messages. Use <prefix> in other messages to include it.
+prefix: <gradient:#51CF66:#2f9e44>🪅 <bold>Party Animals</bold></gradient> <dark_gray>➟</dark_gray>
+# General plugin notifications.
+general:
+  # Message on successful reload.
+  reloadSuccess: <prefix> <green>Configuration reloaded successfully.</green>
+  # Message on failed reload.
+  reloadFail: <prefix> <red>Reload failed! Check console for errors.</red>
+  # Update notification.
+  updateAvailable: '<prefix> <gray>New version available: <green><latest-version></green>
+    (Current: <red><current-version></red>)</gray>'
+# Generic command responses and errors.
+commands:
+  # No permission message.
+  noPermission: <prefix> <red>You do not have permission for this.</red>
+  # Console sender error.
+  playerOnly: <prefix> <red>This command is for players only.</red>
+  # Invalid arguments format.
+  usageHelp: '<prefix> <red>Usage: <gray><usage-help></gray></red>'
+  # Target player not found.
+  playerNotFound: <prefix> <red>Player <dark_red><player-name></dark_red> not found.</red>
+# Messages specific to the pinata module.
+pinata:
+  # Broadcast when countdown begins.
+  countdownStarted: <prefix> <gray>Countdown for <white><pinata></white> at <white><location></white>
+    has <green>begun</green>!</gray>
+  # Broadcast when manually spawned.
+  spawned: <prefix> <gray>The pinata <white><pinata></white> has been <yellow>spawned</yellow>
+    at <white><location></white>!</gray>
+  # Broadcast when spawned naturally.
+  spawnedNaturally: <prefix> <gray>A pinata has spawned at <white><location></white>!</gray>
+  # Feedback when a player hits the entity.
+  hitSuccess: <prefix> <gray>You landed a hit on the pinata!</gray>
+  # Error when hitting with wrong item.
+  hitWrongItem: <prefix> <gray>You must use <red><item></red> to hit this pinata!</gray>
+  # Error when hitting during cooldown.
+  hitCooldown: <prefix> <red><bold>Too fast!</bold></red> <gray>Please wait a moment.</gray>
+  # Error when hitting without permission.
+  hitNoPermission: <prefix> <gray>You are <red>not allowed</red> to hit this pinata.</gray>
+  # Broadcast for the last person to hit.
+  lastHit: <prefix> <gray><white><player-name></white> dealt the final blow!</gray>
+  # Broadcast when pinata is defeated.
+  defeated: <prefix> <gray>The pinata has been <green>defeated</green>!</gray>
+  # Broadcast when pinata despawns due to time.
+  timeout: <prefix> <gray>The pinata has <red>escaped</red>!</gray>
+  # Boss bar countdown text.
+  # Available placeholders: <pinata>, <countdown>
+  bossBarCountdown: A pinata party will begin in <white><countdown></white>. Get ready!
+  # Boss bar active text.
+  # Available placeholders: <pinata>, <health>, <max-health>, <timer>
+  bossBarActive: <pinata> <health> <gray>/</gray> <max-health> <red>❤</red> <gray>[<timer>]</gray>
+  # Admin: Unknown pinata template.
+  unknownTemplate: '<prefix> <red>Unknown pinata template: <white><pinata></white></red>'
+  # Admin: Added spawn location.
+  spawnPointAdded: <prefix> <gray><white><location></white> has been <green>added</green>
+    as a spawn point.</gray>
+  # Admin: Removed spawn location.
+  spawnPointRemoved: <prefix> <gray><white><location></white> has been <red>removed</red>
+    as a spawn point.</gray>
+  # Admin: Unknown spawn location.
+  spawnPointUnknown: <prefix> <gray>The spawn point <white><location></white> does
+    not exist.</gray>
+```
+
+### `pinatas/default.yml`
+
+```yml
+appearance:
+  # Entity types to use for the pinata.
+  # If multiple types are provided, one is chosen randomly.
+  # See: https://jd.papermc.io/paper/1.21.11/org/bukkit/entity/EntityType.html
+  entityTypes:
+  - LLAMA
+  - MULE
+  # Custom name of the pinata entity.
+  name: <gradient:#FF5555:#FF55FF>🪅 <bold>Party Pinata</bold></gradient>
+  # Custom name displayed above the pinata.
+  nameTag:
+    # Whether the name tag is enabled.
+    enabled: true
+    # Type of display. Currently only TEXT is supported.
+    type: TEXT
+    # Lines of text. Supports MiniMessage and placeholders.
+    text:
+    - <pinata>
+    - <health> <gray>/</gray> <max-health> <red>❤</red>
+    - <timer>
+    # Text alignment. Options: LEFT, RIGHT, CENTER.
+    textAlignment: CENTER
+    # Background settings.
+    background:
+      enabled: false
+      alpha: 64
+      red: 0
+      green: 0
+      blue: 0
+    # Shadow settings.
+    shadow:
+      enabled: true
+      radius: 0.0
+      strength: 0.0
+    # How the text rotates relative to the player. Options: FIXED, VERTICAL, HORIZONTAL, CENTER.
+    billboard: VERTICAL
+    # Visible through walls.
+    seeThrough: true
+    # How often to update placeholders (in ticks). Set to -1 to disable updates.
+    updateTextInterval: 20
+    # Position and Scale offsets relative to the Pinata.
+    transformation:
+      translation:
+        x: 0.0
+        y: 0.5
+        z: 0.0
+      scale:
+        x: 1.0
+        y: 1.0
+        z: 1.0
+  # Size randomization settings.
+  scale:
+    # Minimum size multiplier.
+    min: 0.75
+    # Maximum size multiplier.
+    max: 1.25
+  # Flash red when taking damage.
+  damageFlash: false
+  # Show glowing outline.
+  glowing: true
+  # Color of the glowing outline.
+  glowColor: LIGHT_PURPLE
+health:
+  # Base health points.
+  maxHealth: 10
+  # If true, health is multiplied according to player count.
+  perPlayer: true
+  # Health bar visual settings.
+  bar:
+    # Show a boss bar for this phase.
+    enabled: true
+    # If true, all players see the bar. If false, only those near the pinata.
+    global: true
+    # Bar color.
+    # See: https://jd.advntr.dev/api/4.25.0/net/kyori/adventure/bossbar/BossBar.Color.html
+    color: GREEN
+    # Bar overlay.
+    # See: https://jd.advntr.dev/api/4.25.0/net/kyori/adventure/bossbar/BossBar.Overlay.html
+    overlay: NOTCHED_10
+interaction:
+  # Permission required to hit the pinata.
+  permission: ''
+  # Item restriction settings.
+  allowedItems:
+    # Only allow specific items to deal damage.
+    enabled: false
+    # List of allowed material names.
+    # See: https://jd.papermc.io/paper/1.21.11/org/bukkit/Material.html
+    materialNames:
+    - BLAZE_ROD
+    - STICK
+timer:
+  # Countdown before the pinata spawns.
+  countdown:
+    # Duration in seconds.
+    duration: 10
+    # Boss bar for this phase.
+    bar:
+      # Show a boss bar for this phase.
+      enabled: true
+      # If true, all players see the bar. If false, only those near the pinata.
+      global: true
+      # Bar color.
+      # See: https://jd.advntr.dev/api/4.25.0/net/kyori/adventure/bossbar/BossBar.Color.html
+      color: YELLOW
+      # Bar overlay.
+      # See: https://jd.advntr.dev/api/4.25.0/net/kyori/adventure/bossbar/BossBar.Overlay.html
+      overlay: PROGRESS
+    # Effects at start of phase.
+    start:
+      sounds:
+      - type: block.note_block.bit
+        volume: 1.0
+        pitch: 1.0
+      particles:
+      - type: FIREWORK
+        count: 5
+        offset:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        speed: 0.0
+    # Effects during phase.
+    mid:
+      sounds:
+      - type: block.note_block.bit
+        volume: 1.0
+        pitch: 0.800000011920929
+      particles:
+      - type: NOTE
+        count: 5
+        offset:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        speed: 0.0
+    # Effects at end of phase.
+    end:
+      sounds:
+      - type: entity.firework_rocket.launch
+        volume: 1.0
+        pitch: 0.800000011920929
+      particles:
+      - type: SONIC_BOOM
+        count: 5
+        offset:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        speed: 0.0
+  # Maximum time to kill the pinata.
+  timeout:
+    # Enable despawning if not killed in time.
+    enabled: true
+    # Seconds before despawning.
+    duration: 300
+  # Anti-spam click settings.
+  hitCooldown:
+    # Enable attack speed limits.
+    enabled: true
+    # Seconds between hits.
+    duration: 0.75
+    # If true, the cooldown is global (all players share the timer).
+    global: false
+    # Feedback type.
+    # Options: ACTION_BAR, CHAT
+    notificationType: ACTION_BAR
+behavior:
+  # If false, the pinata acts like a statue.
+  enabled: true
+  # Resistance to being pushed.
+  # Range: 0.0 to 1.0
+  knockbackResistance: 1.0
+  # Movement logic settings.
+  movement:
+    # Wandering radius.
+    wanderRadius:
+      x: 15.0
+      y: 5.0
+      z: 15.0
+    # Movement speed multiplier.
+    speed: 1.75
+events:
+  # Triggered when pinata spawns.
+  spawn:
+    # Enable this event.
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+      - type: entity.firework_rocket.twinkle
+        volume: 1.0
+        pitch: 1.0
+      particles:
+      - type: TOTEM_OF_UNDYING
+        count: 10
+        offset:
+          x: 0.5
+          y: 1.0
+          z: 0.5
+        speed: 0.1
+    # Rewards to give. Key is the internal ID of the reward.
+    rewards:
+      announce:
+        chance: 100.0
+        global: false
+        preventFurtherRewards: false
+        pickOneRandom: false
+        permission: ''
+        commands:
+        - broadcast <green>A pinata has arrived!
+  # Triggered when pinata is damaged.
+  hit:
+    # Enable this event.
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+      - type: entity.player.attack.crit
+        volume: 1.0
+        pitch: 1.0
+      particles:
+      - type: CRIT
+        count: 5
+        offset:
+          x: 0.3
+          y: 1.0
+          z: 0.3
+        speed: 0.0
+    # Rewards to give. Key is the internal ID of the reward.
+    rewards: {}
+  # Triggered on the final killing blow.
+  lastHit:
+    # Enable this event.
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+      - type: ui.toast.challenge_complete
+        volume: 1.0
+        pitch: 1.0
+      particles:
+      - type: HEART
+        count: 20
+        offset:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        speed: 0.0
+    # Rewards to give. Key is the internal ID of the reward.
+    rewards:
+      vip_reward:
+        chance: 50.0
+        global: true
+        preventFurtherRewards: false
+        pickOneRandom: false
+        permission: partyanimals.vip
+        commands:
+        - give {player} diamond 1
+  # Triggered when pinata dies.
+  death:
+    # Enable this event.
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+      - type: entity.generic.explode
+        volume: 1.0
+        pitch: 1.0
+      particles:
+      - type: EXPLOSION
+        count: 5
+        offset:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        speed: 0.0
+    # Rewards to give. Key is the internal ID of the reward.
+    rewards:
+      everyone_emerald:
+        chance: 100.0
+        global: true
+        preventFurtherRewards: false
+        pickOneRandom: false
+        permission: ''
+        commands:
+        - give @a emerald 5
+```

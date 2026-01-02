@@ -22,6 +22,7 @@ export default defineConfig({
 				{
 					label: 'Plugins',
 					items: [
+						{ label: 'Overview', slug: 'plugins' },
 						{ label: 'Junction', autogenerate: { directory: 'plugins/junction' } },
 						{ label: 'Ordinal', autogenerate: { directory: 'plugins/ordinal' } },
 						{ label: 'PartyAnimals', autogenerate: { directory: 'plugins/partyanimals' } },

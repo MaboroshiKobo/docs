@@ -1,0 +1,59 @@
+---
+title: Configuration
+---
+
+Below is an example of a configuration file for the Ordinal plugin.
+
+### `config.yml`
+
+```yml
+# Should debug mode be enabled for detailed logs?
+debug: false
+# This module automatically assigns Bedrock Edition players to a specific group.
+permissions:
+  # Should this module be enabled?
+  enabled: false
+  # Which permission provider should be used?
+  # Available options: LuckPerms, Vault
+  provider: LuckPerms
+  # Which permission group should players be assigned to?
+  group: geyser
+# This module automatically executes commands based on Minecraft editions.
+# Available internal placeholders: {player}, {uuid}
+# PlaceholderAPI support is enabled if installed.
+commands:
+  # Should this module be enabled?
+  enabled: false
+  # Commands specific to Java Edition players.
+  java:
+    # List of console commands to execute when a player joins.
+    join:
+    - say Java player {player} joined
+    # List of console commands to execute when a player quits.
+    quit:
+    - say Java player {player} left
+  # Commands specific to Bedrock Edition players.
+  bedrock:
+    # List of console commands to execute when a player joins.
+    join:
+    - say Bedrock player {player} joined
+    # List of console commands to execute when a player quits.
+    quit:
+    - say Bedrock player {player} left
+```
+
+### `messages.yml`
+
+```yml
+# Settings related to messages sent by the plugin.
+messages:
+  # Prefix for all messages sent by the plugin.
+  prefix: <color:#00D4FF><bold>Junction</bold> ➟ </color>
+  # Message displayed when the plugin is reloaded.
+  reloadSuccess: Plugin configuration has been reloaded successfully.
+  # Message displayed when the plugin fails to reload.
+  reloadFail: <red>Failed to reload plugin configuration! Check console for errors.</red>
+  # Message displayed when a new version of the plugin is available.
+  updateAvailable: 'A new version is available! <gray>(Current: <red>{current_version}</red>
+    | Latest: <green>{latest_version}</green>)</gray>'
+```
