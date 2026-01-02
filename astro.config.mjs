@@ -6,19 +6,26 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			title: 'Maboroshi Docs',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/MaboroshiKobo/docs' }],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'About',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ label: 'Welcome', slug: 'welcome' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Gensou',
+					autogenerate: { directory: 'gensou' },
+				},
+				{
+					label: 'Plugins',
+					items: [
+						{ label: 'Junction', autogenerate: { directory: 'plugins/junction' } },
+						{ label: 'Ordinal', autogenerate: { directory: 'plugins/ordinal' } },
+						{ label: 'PartyAnimals', autogenerate: { directory: 'plugins/partyanimals' } },
+					]
 				},
 			],
 		}),
