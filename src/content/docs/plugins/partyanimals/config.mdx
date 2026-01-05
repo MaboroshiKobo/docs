@@ -9,12 +9,36 @@ Below is an example of a configuration file for the Party Animals plugin.
 ```yml
 # Enable debug mode to see detailed logs in the console.
 debug: false
+# Database settings.
+database:
+  # Type of database: 'sqlite' or 'mysql' or 'mariadb'.
+  type: sqlite
+  # Hostname (for MySQL/MariaDB).
+  host: localhost
+  # Port (default 3306 for MySQL/MariaDB).
+  port: 3306
+  # Database name.
+  database: partyanimals
+  # Username.
+  username: root
+  # Password.
+  password: password
+  # Prefix for tables (e.g., 'pa_votes').
+  tablePrefix: pa_
+  # Advanced connection pool settings.
+  pool:
+    # Maximum number of concurrent connections (Default: 10).
+    maximumPoolSize: 10
+    # How long to wait for a connection in milliseconds (Default: 30000).
+    connectionTimeout: 30000
+    # Warn if a connection is held longer than this (Default: 10000).
+    leakDetectionThreshold: 10000
 # Control which parts of the plugin should be active.
 modules:
-  # Toggle the pinata system.
+  # Toggle the pinata module.
   pinata:
-    # Enable or disable the pinata system.
-    enabled: true
+    # Enable or disable the pinata module.
+    enabled: false
     # Defined spawn points.
     spawnPoints:
       default:
@@ -24,8 +48,73 @@ modules:
         z: 0.0
         yaw: 0.0
         pitch: 0.0
-  # Toggle the voting system.
-  vote: false
+  # Toggle the voting module.
+  vote:
+    # Enable or disable the voting module.
+    enabled: false
+    # If true, the plugin will always generate UUIDs based on the player name. (This feature has not been tested extensively.)
+    # Useful for offline-mode servers or testing environments.
+    # WARNING: Changing this after database creation will reset player data links!
+    forceOfflineUUIDs: false
+    # Settings for handling offline votes.
+    offline:
+      # Process votes even if the player is offline?
+      enabled: true
+      # If true, rewards are queued and given when the player joins. If false, rewards are given immediately.
+      queueRewards: true
+    # Periodic reminders for players to vote.
+    reminder:
+      # Enable or disable the vote reminders.
+      enabled: true
+      # Interval in seconds (default 3 hours).
+      interval: 10800
+      # Visual/Audio effects.
+      effects:
+        sounds:
+        - type: entity.player.levelup
+          volume: 1.0
+          pitch: 1.0
+        particles: []
+    # Community Goal settings.
+    communityGoal:
+      # Enable the community goal system?
+      enabled: true
+      # How many votes are needed to trigger the rewards?
+      votesRequired: 50
+      # Rewards to execute when the goal is reached.
+      rewards:
+        community_reward:
+          chance: 100.0
+          global: false
+          preventFurtherRewards: false
+          pickOneRandom: false
+          permission: ''
+          commands:
+          - say <green>Community goal reached!
+          - pa spawn default spawn
+    # Event configurations for votes.
+    events:
+      # Triggered when a single vote is received.
+      vote:
+        # Enable this event.
+        enabled: true
+        # Visual/Audio effects.
+        effects:
+          sounds:
+          - type: entity.player.levelup
+            volume: 1.0
+            pitch: 1.0
+          particles: []
+        # Rewards to give.
+        rewards:
+          announce:
+            chance: 100.0
+            global: false
+            preventFurtherRewards: false
+            pickOneRandom: false
+            permission: ''
+            commands:
+            - say <green>Thank you {player} for voting!
 ```
 
 ### `messages.yml`
@@ -35,64 +124,53 @@ modules:
 prefix: <gradient:#51CF66:#2f9e44>🪅 <bold>Party Animals</bold></gradient> <dark_gray>➟</dark_gray>
 # General plugin notifications.
 general:
-  # Message on successful reload.
   reloadSuccess: <prefix> <green>Configuration reloaded successfully.</green>
-  # Message on failed reload.
   reloadFail: <prefix> <red>Reload failed! Check console for errors.</red>
-  # Update notification.
   updateAvailable: '<prefix> <gray>New version available: <green><latest-version></green>
     (Current: <red><current-version></red>)</gray>'
 # Generic command responses and errors.
 commands:
-  # No permission message.
   noPermission: <prefix> <red>You do not have permission for this.</red>
-  # Console sender error.
   playerOnly: <prefix> <red>This command is for players only.</red>
-  # Invalid arguments format.
   usageHelp: '<prefix> <red>Usage: <gray><usage-help></gray></red>'
-  # Target player not found.
   playerNotFound: <prefix> <red>Player <dark_red><player-name></dark_red> not found.</red>
+# Messages for the help command.
+help:
+  header: <gradient:#51CF66:#2f9e44>🪅 <bold>Party Animals Help</bold></gradient>
+  entry: <gray>-</gray> <click:suggest_command:"/<command>"><white>/<command></white>
+    <dark_gray>»</dark_gray> <gray><description></gray></click>
 # Messages specific to the pinata module.
 pinata:
-  # Broadcast when countdown begins.
-  countdownStarted: <prefix> <gray>Countdown for <white><pinata></white> at <white><location></white>
-    has <green>begun</green>!</gray>
-  # Broadcast when manually spawned.
-  spawned: <prefix> <gray>The pinata <white><pinata></white> has been <yellow>spawned</yellow>
-    at <white><location></white>!</gray>
-  # Broadcast when spawned naturally.
-  spawnedNaturally: <prefix> <gray>A pinata has spawned at <white><location></white>!</gray>
-  # Feedback when a player hits the entity.
-  hitSuccess: <prefix> <gray>You landed a hit on the pinata!</gray>
-  # Error when hitting with wrong item.
-  hitWrongItem: <prefix> <gray>You must use <red><item></red> to hit this pinata!</gray>
-  # Error when hitting during cooldown.
-  hitCooldown: <prefix> <red><bold>Too fast!</bold></red> <gray>Please wait a moment.</gray>
-  # Error when hitting without permission.
-  hitNoPermission: <prefix> <gray>You are <red>not allowed</red> to hit this pinata.</gray>
-  # Broadcast for the last person to hit.
-  lastHit: <prefix> <gray><white><player-name></white> dealt the final blow!</gray>
-  # Broadcast when pinata is defeated.
-  defeated: <prefix> <gray>The pinata has been <green>defeated</green>!</gray>
-  # Broadcast when pinata despawns due to time.
-  timeout: <prefix> <gray>The pinata has <red>escaped</red>!</gray>
-  # Boss bar countdown text.
-  # Available placeholders: <pinata>, <countdown>
-  bossBarCountdown: A pinata party will begin in <white><countdown></white>. Get ready!
-  # Boss bar active text.
-  # Available placeholders: <pinata>, <health>, <max-health>, <timer>
-  bossBarActive: <pinata> <health> <gray>/</gray> <max-health> <red>❤</red> <gray>[<timer>]</gray>
-  # Admin: Unknown pinata template.
-  unknownTemplate: '<prefix> <red>Unknown pinata template: <white><pinata></white></red>'
-  # Admin: Added spawn location.
-  spawnPointAdded: <prefix> <gray><white><location></white> has been <green>added</green>
-    as a spawn point.</gray>
-  # Admin: Removed spawn location.
-  spawnPointRemoved: <prefix> <gray><white><location></white> has been <red>removed</red>
-    as a spawn point.</gray>
-  # Admin: Unknown spawn location.
-  spawnPointUnknown: <prefix> <gray>The spawn point <white><location></white> does
-    not exist.</gray>
+  # Broadcasts and public announcements.
+  events:
+    countdownStarted: <prefix> <gray>Countdown for <white><pinata></white> at <white><location></white>
+      has <green>begun</green>!</gray>
+    spawned: <prefix> <gray>The pinata <white><pinata></white> has been <yellow>spawned</yellow>
+      at <white><location></white>!</gray>
+    spawnedNaturally: <prefix> <gray>A pinata has spawned at <white><location></white>!</gray>
+    defeated: <prefix> <gray>The pinata has been <green>defeated</green>!</gray>
+    timeout: <prefix> <gray>The pinata has <red>escaped</red>!</gray>
+  # Feedback messages sent to individual players.
+  gameplay:
+    hitSuccess: <prefix> <gray>You landed a hit on the pinata!</gray>
+    hitWrongItem: <prefix> <gray>You must use <red><item></red> to hit this pinata!</gray>
+    hitCooldown: <prefix> <red><bold>Too fast!</bold></red> <gray>Please wait a moment.</gray>
+    hitNoPermission: <prefix> <gray>You are <red>not allowed</red> to hit this pinata.</gray>
+    lastHit: <prefix> <gray><white><player-name></white> dealt the final blow!</gray>
+  # Boss bar text configurations.
+  visuals:
+    bossBarCountdown: A pinata party will begin in <white><countdown></white>. Get
+      ready!
+    bossBarActive: <pinata> <health> <gray>/</gray> <max-health> <red>❤</red> <gray>[<timer>]</gray>
+  # Admin command responses.
+  admin:
+    unknownTemplate: '<prefix> <red>Unknown pinata template: <white><pinata></white></red>'
+    spawnPointAdded: <prefix> <gray><white><location></white> has been <green>added</green>
+      as a spawn point.</gray>
+    spawnPointRemoved: <prefix> <gray><white><location></white> has been <red>removed</red>
+      as a spawn point.</gray>
+    spawnPointUnknown: <prefix> <gray>The spawn point <white><location></white> does
+      not exist.</gray>
 ```
 
 ### `pinatas/default.yml`
@@ -308,7 +386,7 @@ events:
         pickOneRandom: false
         permission: ''
         commands:
-        - broadcast <green>A pinata has arrived!
+        - say <green>A pinata has arrived!
   # Triggered when pinata is damaged.
   hit:
     # Enable this event.
