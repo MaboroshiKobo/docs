@@ -1,34 +1,57 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightSidebarTopics from 'starlight-sidebar-topics';
+import starlightSidebarSwipe from 'starlight-sidebar-swipe';
 
-// https://astro.build/config
 export default defineConfig({
-	integrations: [
-		starlight({
-			title: 'Maboroshi Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/MaboroshiKobo/docs' }],
-			sidebar: [
-				{
-					label: 'About',
-					items: [
-						{ label: 'Welcome', slug: 'welcome' },
-					],
-				},
-				{
-					label: 'Gensou',
-					autogenerate: { directory: 'gensou' },
-				},
-				{
-					label: 'Plugins',
-					items: [
-						{ label: 'Overview', slug: 'plugins' },
-						{ label: 'Junction', autogenerate: { directory: 'plugins/junction' } },
-						{ label: 'Ordinal', autogenerate: { directory: 'plugins/ordinal' } },
-						{ label: 'PartyAnimals', autogenerate: { directory: 'plugins/partyanimals' } },
-					]
-				},
-			],
-		}),
-	],
+    site: 'https://docs.maboroshi.org',
+    integrations: [
+        starlight({
+            title: 'Maboroshi',
+            description: 'Documentation for Maboroshi Projects',
+            editLink: {
+                baseUrl: 'https://github.com/MaboroshiKobo/docs/edit/main/',
+            },
+            lastUpdated: true,
+            social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/MaboroshiKobo' }, { icon: 'discord', label: 'Discord', href: 'https://discord.maboroshi.org' }],
+            customCss: ['./src/styles/custom.css', '@fontsource-variable/anuphan'],
+            plugins: [
+                starlightSidebarTopics([
+                    {
+                        label: 'Home',
+                        link: 'home',
+                        icon: 'star',
+                        items: [
+                            { label: 'Welcome', link: 'home' },
+                        ]
+                    },
+                    {
+                        label: 'Projects', 
+                        link: 'projects',
+                        icon: 'rocket',
+                        items: [
+                            { 
+                                label: 'Gensou', 
+                                autogenerate: { directory: 'projects/gensou' } 
+                            },
+                            { 
+                                label: 'Junction', 
+                                autogenerate: { directory: 'projects/junction' } 
+                            },
+                            { 
+                                label: 'Ordinal', 
+                                autogenerate: { directory: 'projects/ordinal' } 
+                            },
+                            { 
+                                label: 'PartyAnimals', 
+                                autogenerate: { directory: 'projects/partyanimals' } 
+                            },
+                        ],
+                    },
+                ]),
+                starlightSidebarSwipe(),
+            ],
+        }),
+    ],
 });
