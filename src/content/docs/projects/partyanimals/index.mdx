@@ -1,29 +1,42 @@
 ---
 title: Introduction
+description: The modular player engagement and voting solution for Paper servers
 ---
 
 import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
-**PartyAnimals** is a modular **player engagement plugin** designed to reward your community through **voting** and interactive, **loot-filled Pinatas**!
+<div align="center">
+  <h3>PartyAnimals</h3>
+  <p>The modular player engagement and voting solution for Paper servers</p>
+</div>
 
-This plugin is ideal for servers looking to boost engagement, reward voters, and automate excitement with **community-driven events**.
+***
+
+**PartyAnimals** is a modular **player engagement plugin** for **Paper** servers designed to reward your community through **voting** and interactive, **loot-filled Pinatas**. The purpose of the plugin is to boost engagement, reward voters, and automate excitement with community-driven events.
 
 ### Features
 
-This plugin is packed with features designed to bring joy to your community. Check out some of its features:
+PartyAnimals handles player retention with a focus on these core functions:
 
-* Create unique **interactive Pinata** templates with custom health and loot tables.
-* Save specific locations as **spawn points** or build excitement by starting a **countdown** before the party begins.
-* Optimized entity handling ensures your events remain **performance friendly** and smooth.
-* Seamlessly **track votes** via Votifier and reward players, even if they are currently **offline**.
-* Automatically trigger **commands** when the server reaches a specific **community vote goal**.
-* Track and display your **top voters** using built-in placeholders for Daily, Weekly, Monthly, and All-Time rankings.
-* Robust data handling with built-in support for **SQLite**, **MySQL**, and **MariaDB** databases.
-* Enjoy full **MiniMessage support** for beautiful gradients and styling in all broadcasts and messages.
+* It spawns interactive **pinata** entities (can be any mob!) that players can strike to receive configurable rewards.
+* You can configure their behaviors, allowing pinatas to roam, flee from players, or defend themselves with **reflexes** like *Shockwave* (knockback), *Blink* (teleportation), and more!
+* It features a complete **voting module** that integrates with **NuVotifier** to track votes, handle offline queuing, and manage **community goals**.
+* It includes extensive customization for rewards, messages, and interaction rules, with optional **PlaceholderAPI** support.
 
-### Support
+### Prerequisites
 
-If you have questions, want to report a bug, or need help, please join our [Discord server](https://discord.maboroshi.org). Alternatively, you may open an issue on [GitHub](https://github.com/MaboroshiKobo/PartyAnimals/issues).
+To use this plugin, your server must be running **Paper**, **Purpur**, or **Folia** on `1.21` or higher. It requires **Java 21** and the [NuVotifier](https://github.com/NuVotifier/NuVotifier) plugin to properly handle voting features.
+
+#### Dependencies
+
+Both dependencies are optional, but highly recommended:
+
+* [NuVotifier](https://github.com/NuVotifier/NuVotifier)
+* [PlaceholderAPI](https://placeholderapi.com/)
+
+### Documentation & Support
+
+For a complete guide on features, commands, and configuration, please visit our [Wiki](https://docs.maboroshi.org/). If you have questions or need to report a bug, join our [Discord server](https://discord.maboroshi.org).
 
 ### Statistics
 

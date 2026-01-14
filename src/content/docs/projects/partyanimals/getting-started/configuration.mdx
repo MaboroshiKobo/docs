@@ -1,13 +1,13 @@
 ---
 title: Configuration
-description: Example configuration files for Party Animals.
+description: Default configuration files and explanations for the PartyAnimals plugin.
 ---
 
-Below is an example of a configuration file for the Party Animals plugin.
+import { Code } from '@astrojs/starlight/components';
 
-### `config.yml`
+Below you can find the default configuration files for the PartyAnimals plugin, including explanations for each setting.
 
-```yml
+export const configFile = `
 # Enable debug mode to see detailed logs in the console.
 debug: false
 # Database settings.
@@ -118,11 +118,12 @@ modules:
             permission: ''
             commands:
             - say <green>Thank you {player} for voting!
-```
+`;
+export const configFileName = 'config.yml';
 
-### `messages.yml`
+<Code code={configFile} lang="yml" title={configFileName} />
 
-```yml
+export const messagesFile = `
 # The global prefix used in messages. Use <prefix> in other messages to include it.
 prefix: <gradient:#51CF66:#2f9e44>🪅 <bold>Party Animals</bold></gradient> <dark_gray>➟</dark_gray>
 # General plugin notifications.
@@ -146,7 +147,7 @@ help:
 pinata:
   # Broadcasts and public announcements.
   events:
-    countdown-started: <prefix> <gray>Countdown for <white><pinata></white> at <white><location></white>
+    starting: <prefix> <gray>Countdown for <white><pinata></white> at <white><location></white>
       has <green>begun</green>!</gray>
     spawned: <prefix> <gray>The pinata <white><pinata></white> has been <yellow>spawned</yellow>
       at <white><location></white>!</gray>
@@ -169,11 +170,12 @@ pinata:
       as a spawn point.</gray>
     spawn-point-unknown: <prefix> <gray>The spawn point <white><location></white>
       does not exist.</gray>
-```
+`;
+export const messagesFileName = 'messages.yml';
 
-### `pinatas/default.yml`
+<Code code={messagesFile} lang="yml" title={messagesFileName} />
 
-```yml
+export const defaultPinataTemplateFile = `
 appearance:
   # Entity types to use for the pinata.
   # If multiple types are provided, one is chosen randomly.
@@ -361,13 +363,121 @@ behavior:
   knockback-resistance: 1.0
   # Movement logic settings.
   movement:
-    # Wandering radius.
-    wander-radius:
+    # Active movement type.
+    # Options: ROAM, FLEE, BOTH, NONE
+    type: FLEE
+    # Radius for random movement.
+    radius:
       x: 15.0
       y: 5.0
       z: 15.0
     # Movement speed multiplier.
     speed: 1.75
+  # Defensive reactions to being attacked or stuck.
+  reflexes:
+    # Shockwave settings.
+    shockwave:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 20.0
+      # Strength multiplier.
+      strength: 1.5
+      # Radius in blocks to find players to affect.
+      radius: 5.0
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Commands to execute when triggered.
+      commands: {}
+    # Morph settings.
+    morph:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 20.0
+      # Duration in ticks.
+      duration: 60
+      # Toggle whether to morph into a different age or scale randomly.
+      # Options: AGE, SCALE
+      type: AGE
+      # Scale settings.
+      # Set 'type' to SCALE to use these. If both scale values are the same, a fixed size is used.
+      scale:
+        # Minimum size multiplier.
+        min: 0.5
+        # Maximum size multiplier.
+        max: 1.5
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Commands to execute when triggered.
+      commands: {}
+    # Blink settings.
+    blink:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 10.0
+      # Teleportation distance in blocks.
+      distance: 10.0
+      # If true, y-coordinates are ignored from the teleportation calculation.
+      ignore-y-level: true
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Commands to execute when triggered.
+      commands: {}
+    # Leap settings.
+    leap:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 20.0
+      # Strength multiplier.
+      strength: 1.0
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Commands to execute when triggered.
+      commands: {}
+    # Sugar Rush settings.
+    sugar-rush:
+      enabled: true
+      # Chance to trigger when hit.
+      chance: 20.0
+      # Duration of speed burst (ticks).
+      duration: 40
+      # Speed level (0 = Speed I, 1 = Speed II, 2 = Speed III).
+      amplifier: 2
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Commands to execute when triggered.
+      commands: {}
+    # Dazzle settings.
+    dazzle:
+      enabled: true
+      # Chance to trigger when hit.
+      chance: 20.0
+      # Duration of blindness (ticks).
+      duration: 30
+      # Visual/Audio effects.
+      # These apply to the players' view.
+      effects:
+        sounds: {}
+        particles:
+          blind-flash:
+            type: GLOW
+            count: 10
+            offset:
+              x: 0.2
+              y: 0.2
+              z: 0.2
+            speed: 0.1
+      # Commands to execute when triggered.
+      commands: {}
 events:
   # Triggered when pinata spawns.
   spawn:
@@ -481,4 +591,7 @@ events:
         permission: ''
         commands:
         - give @a emerald 5
-```
+`;
+export const defaultPinataTemplateFileName = 'messages.yml';
+
+<Code code={defaultPinataTemplateFile} lang="yml" title={defaultPinataTemplateFileName  } />

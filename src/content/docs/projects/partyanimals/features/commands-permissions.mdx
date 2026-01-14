@@ -1,6 +1,6 @@
 ---
 title: Commands & Permissions
-description: Detailed list of commands and permissions for Party Animals.
+description: Detailed list of commands and permissions for PartyAnimals.
 ---
 
 | Command | Permission | Description |
@@ -8,3 +8,15 @@ description: Detailed list of commands and permissions for Party Animals.
 | `/partyanimals` (or `/pa`) | `partyanimals.use` | Main command to access Party Animals features. |
 | `/partyanimals help` | `partyanimals.help` | Displays help information for Party Animals commands. |
 | `/partyanimals reload` | `partyanimals.reload` | Reloads the Party Animals configuration without restarting the server. |
+| `/partyanimals pinata start <pinata> <loc>` | `partyanimals.pinata.start` | Start pinata countdown. |
+| `/partyanimals pinata spawn <pinata> <loc>` | `partyanimals.pinata.spawn` | Spawn pinata immediately. |
+| `/partyanimals pinata killall` | `partyanimals.pinata.killall` | Remove all active pinatas. |
+| `/partyanimals pinata spawnpoint add <name>` | `partyanimals.pinata.spawnpoint.add` | Save current location. |
+| `/partyanimals pinata spawnpoint remove <name>` | `partyanimals.pinata.spawnpoint.remove` | Remove saved location. |
+| `/partyanimals vote check <player>` | `partyanimals.vote.check` | Check player votes. |
+| `/partyanimals vote add <player> <amount>` | `partyanimals.vote.add` | Add votes to a player's balance. |
+| `/partyanimals vote remove <player> <amount>` | `partyanimals.vote.remove` | Remove votes from a player's balance. |
+| `/partyanimals vote set <player> <amount>` | `partyanimals.vote.set` | Set a player's vote balance. |
+| `/partyanimals vote send <player>` | `partyanimals.vote.send` | Send a legitimate vote (triggers rewards). |
+| `/partyanimals vote test <player>` | `partyanimals.vote.test` | Send a fake vote (for testing). |
+| `/partyanimals vote migrate <plugin>` | `partyanimals.vote.migrate` | Migrate data from another plugin (e.g., `PinataParty`). |

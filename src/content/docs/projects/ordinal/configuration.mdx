@@ -1,0 +1,46 @@
+---
+title: Configuration
+description: Default configuration files and explanations for the Ordinal plugin.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+Below you can find the default configuration files for the Ordinal plugin, including explanations for each setting.
+
+export const configFile = `
+# Should debug mode be enabled for detailed logs?
+debug: false
+# Settings related to player join order and veteran status.
+seniority:
+  # Should the seniority tracking module be enabled?
+  enabled: true
+`;
+export const configFileName = 'config.yml';
+
+<Code code={configFile} lang="yml" title={configFileName} />
+
+export const messagesFile = `
+# Settings related to messages sent by the plugin.
+messages:
+  # Prefix for all messages sent by the plugin.
+  prefix: <color:#74c7ec><bold>Ordinal</bold></color> <dark_gray>➟</dark_gray>
+  # Message displayed when the plugin is reloaded.
+  reload-success: <prefix> <green>Plugin configuration has been reloaded successfully.</green>
+  # Message displayed when the plugin fails to reload.
+  reload-fail: <prefix> <red>Failed to reload plugin configuration! Check console
+    for errors.</red>
+  # Message displayed when a new version of the plugin is available.
+  update-available: '<prefix> A new version is available! <gray>(Current: <red>{current_version}</red>
+    | Latest: <green>{latest_version}</green>)</gray>'
+  # Message shown when using /ordinal command without arguments.
+  help-info: <green>🛈</green> <gray>Type <white>/ordinal reload</white> to reload
+    the configuration.</gray>
+  # Message shown when a player is not found for the reset command.
+  player-not-found: <prefix> <red>Player not found.</red>
+  # Message shown when a player's ordinal is successfully reset.
+  reset-success: '<prefix> <green>Reset complete for <white><player></white>. New
+    Rank: <yellow><rank></yellow></green>'
+`;
+export const messagesFileName = 'messages.yml';
+
+<Code code={messagesFile} lang="yml" title={messagesFileName} />

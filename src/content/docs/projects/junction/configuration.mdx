@@ -1,12 +1,13 @@
 ---
 title: Configuration
+description: Default configuration files and explanations for the Junction plugin.
 ---
 
-Below is an example of a configuration file for the Junction plugin.
+import { Code } from '@astrojs/starlight/components';
 
-### `config.yml`
+Below you can find the default configuration files for the Junction plugin, including explanations for each setting.
 
-```yml
+export const configFile = `
 # Should debug mode be enabled for detailed logs?
 debug: false
 # This module automatically assigns Bedrock Edition players to a specific group.
@@ -40,11 +41,12 @@ commands:
     # List of console commands to execute when a player quits.
     quit:
     - say Bedrock player {player} left
-```
+`;
+export const configFileName = 'config.yml';
 
-### `messages.yml`
+<Code code={configFile} lang="yml" title={configFileName} />
 
-```yml
+export const messagesFile = `
 # Settings related to messages sent by the plugin.
 messages:
   # Prefix for all messages sent by the plugin.
@@ -56,4 +58,7 @@ messages:
   # Message displayed when a new version of the plugin is available.
   updateAvailable: 'A new version is available! <gray>(Current: <red>{current_version}</red>
     | Latest: <green>{latest_version}</green>)</gray>'
-```
+`;
+export const messagesFileName = 'messages.yml';
+
+<Code code={messagesFile} lang="yml" title={messagesFileName} />
