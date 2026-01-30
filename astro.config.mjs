@@ -8,8 +8,12 @@ export default defineConfig({
     site: 'https://docs.maboroshi.org',
     integrations: [
         starlight({
-            title: 'Maboroshi',
+            title: 'Documentation',
             description: 'Documentation for Maboroshi Projects',
+            logo: {
+                src: './src/assets/images/logo.avif',
+                replacesTitle: true,
+            },
             editLink: {
                 baseUrl: 'https://github.com/MaboroshiKobo/docs/edit/main/',
             },
