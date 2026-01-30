@@ -8,7 +8,7 @@ export default defineConfig({
     site: 'https://docs.maboroshi.org',
     integrations: [
         starlight({
-            title: 'Documentation',
+            title: 'Maboroshi',
             description: 'Documentation for Maboroshi Projects',
             logo: {
                 src: './src/assets/images/logo.avif',
