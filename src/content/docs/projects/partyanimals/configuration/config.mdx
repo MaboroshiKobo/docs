@@ -1,0 +1,156 @@
+---
+title: Configuration
+description: Default configuration file.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+export const configFile = `
+# Enable debug mode to see detailed logs in the console.
+debug: false
+# Control which parts of the plugin should be active.
+modules:
+  # Toggle the pinata module.
+  pinata:
+    # Enable or disable the pinata module.
+    enabled: true
+    # Defined spawn points.
+    spawn-points:
+      default:
+        world: world
+        x: 0.0
+        y: 100.0
+        z: 0.0
+        yaw: 0.0
+        pitch: 0.0
+  # Toggle the voting module.
+  vote:
+    # Enable or disable the voting module.
+    enabled: false
+    # Settings for handling offline votes.
+    offline:
+      # Process votes even if the player is offline?
+      enabled: true
+      # If true, rewards are queued and given when the player joins. If false, rewards are given immediately.
+      queue-rewards: true
+    # Periodic reminders for players to vote.
+    reminder:
+      # Enable or disable the vote reminders.
+      enabled: false
+      # Interval in seconds (default 3 hours).
+      interval: 10800
+      # Visual/Audio effects.
+      effects:
+        sounds:
+          notification:
+            type: block.note_block.pling
+            volume: 1.0
+            pitch: 1.0
+        particles: {}
+      # Actions to execute.
+      actions:
+        reminder:
+          chance: 100.0
+          global: false
+          stop-processing: false
+          pick-one-random: false
+          permission: ''
+          commands:
+          - msg <player> Don't forget to vote for our server!
+    # Community Goal settings.
+    community-goal:
+      # Enable the community goal system?
+      enabled: false
+      # Number of votes required to reach the goal.
+      votes-required: 50
+      # Actions to execute when the goal is reached.
+      actions:
+        community_reward:
+          chance: 100.0
+          global: false
+          stop-processing: false
+          pick-one-random: false
+          permission: ''
+          commands:
+          - say Community goal reached!
+          - pa pinata start default default
+    # Event configurations for votes.
+    events:
+      # Triggered when a single vote is received.
+      player-vote:
+        # Enable this event.
+        enabled: true
+        # Vote limit settings.
+        daily-limit:
+          # Enable daily vote limits per player.
+          enabled: false
+          # Maximum number of votes before rewards are skipped (-1 for unlimited).
+          amount: 5
+          # If true, votes received after the limit is reached, are still saved to the database
+          # and count towards community goals/leaderboards, but grant no rewards.
+          # If false, excess votes are completely ignored (stats are capped to the configured amount).
+          count-excess-votes: true
+          # Visual/Audio effects.
+          effects:
+            sounds:
+              limit-reached:
+                type: entity.villager.no
+                volume: 1.0
+                pitch: 1.0
+            particles: {}
+          # Actions to execute when the limit is reached (e.g. warn the player).
+          actions:
+            limit_reached:
+              chance: 100.0
+              global: false
+              stop-processing: false
+              pick-one-random: false
+              permission: ''
+              commands:
+              - msg <player> You have reached your daily vote reward limit!
+        # Visual/Audio effects.
+        effects:
+          sounds:
+            level-up:
+              type: entity.player.levelup
+              volume: 1.0
+              pitch: 1.0
+          particles: {}
+        # Actions to execute.
+        actions:
+          announce:
+            chance: 100.0
+            global: false
+            stop-processing: false
+            pick-one-random: false
+            permission: ''
+            commands:
+            - say Thank you <player> for voting!
+# Database settings.
+database:
+  # Type of database: 'sqlite' or 'mysql' or 'mariadb'.
+  type: sqlite
+  # Hostname (for MySQL/MariaDB).
+  host: localhost
+  # Port (default 3306 for MySQL/MariaDB).
+  port: 3306
+  # Database name.
+  database: partyanimals
+  # Username.
+  username: root
+  # Password.
+  password: password
+  # Prefix for tables (e.g., 'pa_votes').
+  table-prefix: pa_
+  # Advanced connection pool settings.
+  pool:
+    # Maximum number of concurrent connections (Default: 10).
+    maximum-pool-size: 10
+    # How long to wait for a connection in milliseconds (Default: 30000).
+    connection-timeout: 30000
+    # Warn if a connection is held longer than this (Default: 10000).
+    leak-detection-threshold: 10000
+`;
+export const configFileName = 'config.yml';
+
+<Code code={configFile} lang="yml" title={configFileName} />

@@ -1,0 +1,446 @@
+---
+title: Pinata Template
+description: Default pinata template configuration file.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+export const defaultPinataTemplateFile = `
+appearance:
+  # Pinata variant settings.
+  variants:
+    default:
+      types:
+      - LLAMA
+      - MULE
+      model: ''
+      name: <gradient:#FF5555:#FF55FF>🪅 <bold>Party Pinata</bold></gradient>
+      scale:
+        min: 0.75
+        max: 1.25
+      nbt: ''
+      weight: 10.0
+  # Custom name displayed above the pinata.
+  name-tag:
+    # Whether the name tag is enabled.
+    enabled: true
+    # Type of display. Currently only TEXT is supported.
+    type: TEXT
+    # Lines of text. Supports MiniMessage and placeholders.
+    text:
+    - <pinata_name>
+    - <pinata_health> <gray>/</gray> <pinata_max_health> <red>❤</red>
+    - <timer>
+    # Text alignment
+    # Options: LEFT, RIGHT, CENTER.
+    text-alignment: CENTER
+    # Background settings.
+    background:
+      enabled: false
+      alpha: 64
+      red: 0
+      green: 0
+      blue: 0
+    # Shadow settings.
+    shadow:
+      enabled: true
+      radius: 0.0
+      strength: 0.0
+    # How the text rotates relative to the player.
+    # Options: FIXED, VERTICAL, HORIZONTAL, CENTER.
+    billboard: VERTICAL
+    # Visible through walls.
+    see-through: true
+    # How often to update placeholders in ticks. Set to -1 to disable updates.
+    update-text-interval: 20
+    # Position and Scale offsets relative to the Pinata.
+    transformation:
+      translation:
+        x: 0.0
+        y: 0.5
+        z: 0.0
+      scale:
+        x: 1.0
+        y: 1.0
+        z: 1.0
+  # Flash red when taking damage.
+  damage-flash: false
+  # Show glowing outline.
+  glowing: true
+  # Color of the glowing outline.
+  # https://jd.advntr.dev/api/latest/net/kyori/adventure/text/format/NamedTextColor.html
+  glow-color: LIGHT_PURPLE
+health:
+  # Base health points.
+  base-health: 5
+  # If true, health is multiplied according to player count.
+  per-player: true
+  # Maximum health points.
+  max-health: 250
+  # Health bar visual settings.
+  bar:
+    # Show a boss bar for this phase.
+    enabled: true
+    # If true, all players see the bar. If false, only those near the pinata.
+    global: true
+    # Bar color.
+    # See: https://jd.advntr.dev/api/latest/net/kyori/adventure/bossbar/BossBar.Color.html
+    color: GREEN
+    # Bar overlay.
+    # See: https://jd.advntr.dev/api/latest/net/kyori/adventure/bossbar/BossBar.Overlay.html
+    overlay: NOTCHED_10
+    # Text displayed on the boss bar.
+    text: <pinata_name> <pinata_health> <gray>/</gray> <pinata_max_health> <red>❤</red>
+      <gray>[<timer>]</gray>
+interaction:
+  # Permission required to hit the pinata.
+  permission: ''
+  # Item whitelist settings.
+  allowed-items:
+    enabled: false
+    # List of allowed material names.
+    # See: https://jd.papermc.io/paper/latest/org/bukkit/Material.html
+    material-names:
+    - BLAZE_ROD
+    - STICK
+  # Hit cooldown.
+  hit-cooldown:
+    enabled: true
+    # Cooldown duration in seconds.
+    duration: 0.75
+    # If true, the cooldown is global (all players share the timer).
+    global: false
+    # Feedback type.
+    # Options: ACTION_BAR, CHAT, NONE
+    notification-type: ACTION_BAR
+behavior:
+  # If false, the pinata acts like a statue.
+  enabled: true
+  # Resistance to being pushed.
+  # Range: 0.0 to 1.0
+  knockback-resistance: 1.0
+  # Movement logic settings.
+  movement:
+    # AI Movement Mode.
+    # 1. ACTIVE - Wanders, looks at players, and flees when attacked.
+    # 2. PASSIVE - Wanders and looks at players.
+    # 3. STATIONARY - Never moves, but will look at nearby players.
+    type: ACTIVE
+    roam:
+      # Speed when wandering peacefully.
+      speed: 1.25
+      # Chance to start wandering each tick while idle.
+      chance: 2
+      # Maximum distance from spawn point to wander.
+      radius:
+        x: 15.0
+        y: 5.0
+        z: 15.0
+    flee:
+      # Speed when sprinting away from danger.
+      speed: 1.5
+      # Distance in blocks a player must be within to trigger fleeing.
+      trigger-radius: 3.0
+      # Distance in blocks away from player to consider safe and stop running.
+      safety-radius: 15.0
+    freeze:
+      # Radius in blocks to detect and look at nearby players.
+      radius: 15.0
+  # Defensive reactions to being attacked or stuck.
+  reflexes:
+    shockwave:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 20.0
+      # Strength multiplier.
+      strength: 1.5
+      # Vertical boost applied to affected players.
+      vertical-boost: 0.5
+      # Radius in blocks to find players to affect.
+      radius: 5.0
+      # Animation ID to play when triggered. Requires ModelEngine or BetterModel.
+      animation: ''
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Actions to execute when triggered.
+      actions: {}
+    morph:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 20.0
+      # Duration in ticks.
+      duration: 60
+      # Toggle whether to morph into a different age or scale randomly.
+      # Options: AGE, SCALE
+      type: AGE
+      # Scale settings.
+      # Set 'type' to SCALE to use these. If both scale values are the same, a fixed size is used.
+      scale:
+        # Minimum size multiplier.
+        min: 0.5
+        # Maximum size multiplier.
+        max: 1.5
+      # Animation ID to play when triggered. Requires ModelEngine or BetterModel.
+      animation: ''
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Actions to execute when triggered.
+      actions: {}
+    blink:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 10.0
+      # Teleportation distance in blocks.
+      distance: 10.0
+      # If true, y-coordinates are ignored from the teleportation calculation.
+      ignore-y-level: true
+      # Animation ID to play when triggered. Requires ModelEngine or BetterModel.
+      animation: ''
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Actions to execute when triggered.
+      actions: {}
+    leap:
+      enabled: true
+      # Chance to trigger on hit.
+      chance: 20.0
+      # Strength multiplier.
+      strength: 1.0
+      # Animation ID to play when triggered. Requires ModelEngine or BetterModel.
+      animation: ''
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Actions to execute when triggered.
+      actions: {}
+    sugar-rush:
+      enabled: true
+      # Chance to trigger when hit.
+      chance: 20.0
+      # Duration of speed burst (ticks).
+      duration: 40
+      # Speed level (0 = Speed I, 1 = Speed II, 2 = Speed III).
+      amplifier: 2
+      # Animation ID to play when triggered. Requires ModelEngine or BetterModel.
+      animation: ''
+      # Visual/Audio effects.
+      effects:
+        sounds: {}
+        particles: {}
+      # Actions to execute when triggered.
+      actions: {}
+    dazzle:
+      enabled: true
+      # Chance to trigger when hit.
+      chance: 20.0
+      # Duration in ticks.
+      duration: 60
+      # Animation ID to play when triggered. Requires ModelEngine or BetterModel.
+      animation: ''
+      # Visual/Audio effects.
+      # These apply to the players' FOV.
+      effects:
+        sounds: {}
+        particles:
+          blind-flash:
+            type: GLOW
+            count: 10
+            offset:
+              x: 0.2
+              y: 0.2
+              z: 0.2
+            speed: 0.1
+      # Actions to execute when triggered.
+      actions: {}
+timer:
+  # Countdown before the pinata spawns.
+  countdown:
+    # Duration in seconds.
+    duration: 10
+    # Boss bar for this phase.
+    bar:
+      # Show a boss bar for this phase.
+      enabled: true
+      # If true, all players see the bar. If false, only those near the pinata.
+      global: true
+      # Bar color.
+      # See: https://jd.advntr.dev/api/latest/net/kyori/adventure/bossbar/BossBar.Color.html
+      color: YELLOW
+      # Bar overlay.
+      # See: https://jd.advntr.dev/api/latest/net/kyori/adventure/bossbar/BossBar.Overlay.html
+      overlay: PROGRESS
+      # Text displayed on the boss bar.
+      text: A pinata party will begin in <white><countdown></white>. Get ready!
+    # Effects at start of phase.
+    start:
+      sounds:
+        tick:
+          type: block.note_block.bit
+          volume: 1.0
+          pitch: 1.0
+      particles:
+        spawn-flare:
+          type: FIREWORK
+          count: 5
+          offset:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          speed: 0.0
+    # Effects during phase.
+    mid:
+      sounds:
+        pulse:
+          type: block.note_block.bit
+          volume: 1.0
+          pitch: 0.800000011920929
+      particles:
+        note-trail:
+          type: NOTE
+          count: 5
+          offset:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          speed: 0.0
+    # Effects at end of phase.
+    end:
+      sounds:
+        launch:
+          type: entity.firework_rocket.launch
+          volume: 1.0
+          pitch: 0.800000011920929
+      particles:
+        boom:
+          type: SONIC_BOOM
+          count: 5
+          offset:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          speed: 0.0
+  # Maximum time to kill the pinata.
+  timeout:
+    enabled: true
+    # Duration in seconds before pinata despawns.
+    duration: 300
+events:
+  # Triggered when pinata spawns.
+  spawn:
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+        twinkle:
+          type: entity.firework_rocket.twinkle
+          volume: 1.0
+          pitch: 1.0
+      particles:
+        totem:
+          type: TOTEM_OF_UNDYING
+          count: 10
+          offset:
+            x: 0.5
+            y: 1.0
+            z: 0.5
+          speed: 0.1
+    # Actions to execute when triggered.
+    actions:
+      announce:
+        chance: 100.0
+        global: false
+        stop-processing: false
+        pick-one-random: false
+        permission: ''
+        commands:
+        - say A pinata has arrived!
+  # Triggered when pinata is damaged.
+  hit:
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+        crit-sound:
+          type: entity.player.attack.crit
+          volume: 1.0
+          pitch: 1.0
+      particles:
+        crit-particle:
+          type: CRIT
+          count: 5
+          offset:
+            x: 0.3
+            y: 1.0
+            z: 0.3
+          speed: 0.0
+    # Actions to execute when triggered.
+    actions:
+      vip_reward:
+        chance: 50.0
+        global: false
+        stop-processing: false
+        pick-one-random: false
+        permission: partyanimals.vip
+        commands:
+        - give <player> diamond 1
+  # Triggered on the final killing blow.
+  last-hit:
+    enabled: false
+    # Visual/Audio effects.
+    effects:
+      sounds:
+        challenge-complete:
+          type: ui.toast.challenge_complete
+          volume: 1.0
+          pitch: 1.0
+      particles:
+        hearts:
+          type: HEART
+          count: 20
+          offset:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          speed: 0.0
+    # Actions to execute when triggered.
+    actions: {}
+  # Triggered when pinata dies.
+  death:
+    enabled: true
+    # Visual/Audio effects.
+    effects:
+      sounds:
+        explosion-sound:
+          type: entity.generic.explode
+          volume: 1.0
+          pitch: 1.0
+      particles:
+        explosion-particle:
+          type: EXPLOSION
+          count: 5
+          offset:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          speed: 0.0
+    # Actions to execute when triggered.
+    actions:
+      everyone_emerald:
+        chance: 100.0
+        global: false
+        stop-processing: false
+        pick-one-random: false
+        permission: ''
+        commands:
+        - give @a emerald 5
+`;
+export const defaultPinataTemplateFileName = 'messages.yml';
+
+<Code code={defaultPinataTemplateFile} lang="yml" title={defaultPinataTemplateFileName  } />

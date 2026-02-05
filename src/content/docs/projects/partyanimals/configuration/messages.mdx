@@ -1,0 +1,58 @@
+---
+title: Messages
+description: Default messages configuration file.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+export const messagesFile = `
+# The global prefix used in messages. Use <prefix> in other messages to include it.
+prefix: <gradient:#51CF66:#2f9e44>🪅 <bold>Party Animals</bold></gradient> <dark_gray>➟</dark_gray>
+# General plugin notifications.
+general:
+  reload-success: <prefix> <green>Configuration reloaded successfully.</green>
+  reload-fail: <prefix> <red>Reload failed! Check console for errors.</red>
+  update-available: '<prefix> <gray>New version available: <green><latest_version></green>
+    (Current: <red><current_version></red>)</gray>'
+# Generic command responses and errors.
+commands:
+  no-permission: <prefix> <red>You do not have permission for this.</red>
+  player-only: <prefix> <red>This command is for players only.</red>
+  usage-help: '<prefix> <red>Usage: <gray><usage-help></gray></red>'
+  player-not-found: <prefix> <red>Player <dark_red><player></dark_red> not found.</red>
+  vote-triggered: <prefix> <gray>Triggered vote event for <white><player></white>
+    via <white><service></white></gray>
+# Messages for the help command.
+help:
+  header: <gradient:#51CF66:#2f9e44>🪅 <bold>Party Animals</bold> Commands</gradient>
+  entry: <gray>-</gray> <click:suggest_command:"/<command>"><white>/<command></white>
+    <dark_gray>»</dark_gray> <gray><description></gray></click>
+# Messages specific to the pinata module.
+pinata:
+  # Broadcasts and public announcements.
+  events:
+    starting: <prefix> <gray>Started countdown for a pinata to spawn at <white><location></white>.</gray>
+    spawned: <prefix> <gray>A pinata has <yellow>spawned</yellow> at <white><location></white>!</gray>
+    spawned-naturally: <prefix> <gray>A pinata has spawned at <white><location></white>!</gray>
+    defeated: <prefix> <gray>The pinata has been <green>defeated</green>!</gray>
+    timeout: <prefix> <gray>The pinata has <red>escaped</red>!</gray>
+  # Feedback messages sent to individual players.
+  gameplay:
+    hit-success: <prefix> <gray>You landed a hit on the pinata!</gray>
+    hit-wrong-item: <prefix> <gray>You must use <red><item></red> to hit this pinata!</gray>
+    hit-cooldown: <prefix> <red><bold>Too fast!</bold></red> <gray>Please wait a moment.</gray>
+    hit-no-permission: <prefix> <gray>You are <red>not allowed</red> to hit this pinata.</gray>
+    last-hit: <prefix> <gray><white><player></white> dealt the final blow!</gray>
+  # Admin command responses.
+  admin:
+    unknown-template: '<prefix> <red>Unknown pinata template: <white><template></white></red>'
+    spawn-point-added: <prefix> <gray><white><location></white> has been <green>added</green>
+      as a spawn point.</gray>
+    spawn-point-removed: <prefix> <gray><white><location></white> has been <red>removed</red>
+      as a spawn point.</gray>
+    spawn-point-unknown: <prefix> <gray>The spawn point <white><location></white>
+      does not exist.</gray>
+`;
+export const messagesFileName = 'messages.yml';
+
+<Code code={messagesFile} lang="yml" title={messagesFileName} />

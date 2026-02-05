@@ -51,8 +51,8 @@ export default defineConfig({
                                 label: 'PartyAnimals',
                                 items: [
                                     { label: 'Introduction', link: 'projects/partyanimals' },
-                                    { label: 'Getting Started', autogenerate: { directory: 'projects/partyanimals/getting-started' } },
                                     { label: 'Features', autogenerate: { directory: 'projects/partyanimals/features' } },
+                                    { label: 'Configuration', autogenerate: { directory: 'projects/partyanimals/configuration' } },
                                 ]
                             },
                         ],
