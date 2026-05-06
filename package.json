@@ -14,6 +14,7 @@
     "@fontsource-variable/anuphan": "^5.2.8",
     "astro": "6.2.2",
     "sharp": "^0.34.5",
+    "starlight-page-actions": "^0.6.0",
     "starlight-sidebar-swipe": "^0.2.0",
     "starlight-sidebar-topics": "^0.7.1"
   },
