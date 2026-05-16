@@ -38,22 +38,22 @@ export default defineConfig({
                         items: [
                             { 
                                 label: 'Gensou', 
-                                autogenerate: { directory: 'projects/gensou' } 
+                                items: [{ autogenerate: { directory: 'projects/gensou' } }]
                             },
                             { 
                                 label: 'Junction', 
-                                autogenerate: { directory: 'projects/junction' } 
+                                items: [{ autogenerate: { directory: 'projects/junction' } }]
                             },
                             { 
                                 label: 'Ordinal', 
-                                autogenerate: { directory: 'projects/ordinal' } 
+                                items: [{ autogenerate: { directory: 'projects/ordinal' } }]
                             },
                             { 
                                 label: 'PartyAnimals',
                                 items: [
                                     { label: 'Introduction', link: 'projects/partyanimals' },
-                                    { label: 'Features', autogenerate: { directory: 'projects/partyanimals/features' } },
-                                    { label: 'Configuration', autogenerate: { directory: 'projects/partyanimals/configuration' } },
+                                    { label: 'Features', items: [{ autogenerate: { directory: 'projects/partyanimals/features' } }] },
+                                    { label: 'Configuration', items: [{ autogenerate: { directory: 'projects/partyanimals/configuration' } }] },
                                 ]
                             },
                         ],
