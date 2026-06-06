@@ -1,0 +1,79 @@
+---
+title: Commands & Permissions
+description: Detailed list of commands and permissions for Vessel.
+---
+
+### Commands
+
+* `/vessel`
+  * Permission: `vessel.command`
+  * Description: Main command to display plugin information.
+
+* `/vessel help`
+  * Permission: `vessel.command.help`
+  * Description: Displays help information for Vessel commands.
+
+* `/vessel reload`
+  * Permission: `vessel.command.reload`
+  * Description: Reloads the plugin configurations.
+
+* `/vessel give <player> <type> <amount> [-s]`
+  * Permission: `vessel.command.give`
+  * Description: Gives a specified tier and amount of vessels to a player. Use `-s` or `-silent` to suppress messages.
+
+### Interaction Permissions
+
+The following permissions control how players interact with vessels in the world.
+
+* `vessel.use.consumable`
+  * Description: Allows usage of consumable tier vessels.
+* `vessel.use.reusable`
+  * Description: Allows usage of reusable tier vessels.
+* `vessel.capture.*`
+  * Description: Wildcard permission to capture any allowed mob type.
+* `vessel.release.*`
+  * Description: Wildcard permission to release any stored mob type.
+* `vessel.capture.<entity_type>`
+  * Description: Allows capturing a specific entity type (e.g., `vessel.capture.cow`).
+* `vessel.release.<entity_type>`
+  * Description: Allows releasing a specific entity type (e.g., `vessel.release.cow`).
+
+For a list of entity types, refer to the [EntityType Javadocs](https://jd.papermc.io/paper/latest/org/bukkit/entity/EntityType.html).
+
+### Category Shortcut Permissions
+
+Instead of assigning individual entity permissions, shortcut groups can be used to manage entire categories of mobs.
+
+* [Animals](https://jd.papermc.io/paper/latest/org/bukkit/entity/Animals.html)
+  * Permission Nodes: `vessel.capture.animals` and `vessel.release.animals`
+
+* [Monsters](https://jd.papermc.io/paper/latest/org/bukkit/entity/Monster.html)
+  * Permission Nodes: `vessel.capture.monsters` and `vessel.release.monsters`
+
+* [Golems](https://jd.papermc.io/paper/latest/org/bukkit/entity/Golem.html)
+  * Permission Nodes: `vessel.capture.golems` and `vessel.release.golems`
+
+* [Fish](https://jd.papermc.io/paper/latest/org/bukkit/entity/Fish.html)
+  * Permission Nodes: `vessel.capture.fish` and `vessel.release.fish`
+
+* [Water Mobs](https://jd.papermc.io/paper/latest/org/bukkit/entity/WaterMob.html)
+  * Permission Nodes: `vessel.capture.watermobs` and `vessel.release.watermobs`
+
+* [Ambient](https://jd.papermc.io/paper/latest/org/bukkit/entity/Ambient.html)
+  * Permission Nodes: `vessel.capture.ambient` and `vessel.release.ambient`
+
+* [Raiders](https://jd.papermc.io/paper/latest/org/bukkit/entity/Raider.html)
+  * Permission Nodes: `vessel.capture.raiders` and `vessel.release.raiders`
+  * Javadocs: https://jd.papermc.io/paper/latest/org/bukkit/entity/Raider.html
+
+* [Bosses](https://jd.papermc.io/paper/latest/org/bukkit/entity/Boss.html)
+  * Permission Nodes: `vessel.capture.bosses` and `vessel.release.bosses`
+
+* [Illagers](https://jd.papermc.io/paper/latest/org/bukkit/entity/Illager.html)
+  * Permission Nodes: `vessel.capture.illagers` and `vessel.release.illagers`
+
+* [Tameable](https://jd.papermc.io/paper/latest/org/bukkit/entity/Tameable.html)
+  * Permission Nodes: `vessel.capture.tameable` and `vessel.release.tameable`
+
+* [NPCs](https://jd.papermc.io/paper/latest/org/bukkit/entity/NPC.html)
+  * Permission Nodes: `vessel.capture.npcs` and `vessel.release.npcs`

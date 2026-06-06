@@ -1,0 +1,188 @@
+---
+title: Modules
+description: Default module files and explanations for the Vessel plugin.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+Below you can find the default module files for the Vessel plugin, including explanations for each setting.
+
+### Consumable Vessel
+
+This is the default configuration for the consumable vessel, which allows players to capture and release mobs using single-use vessels.
+
+export const consumableModule = `
+# Enable or disable the use of consumable vessels.
+enabled: true
+# Exclude certain mobs from consumable vessel capture and release logic.
+exclusions:
+  # Should tamed mobs be excluded from capture?
+  tamed: true
+  # Should named mobs be excluded from capture?
+  named: false
+  # Spawn reasons allowed for capture.
+  # Accepted values: NONE, BLACKLIST, WHITELIST.
+  spawn-reasons:
+    # How this filter should be interpreted.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    mode: BLACKLIST
+    # Values used by the selected filter mode.
+    values:
+    - CUSTOM
+# World filter for consumable vessels.
+worlds:
+  # How this filter should be interpreted.
+  # Accepted values: NONE, BLACKLIST, WHITELIST.
+  mode: NONE
+  # Values used by the selected filter mode.
+  values: []
+# Entity filter for consumable vessels.
+entities:
+  # How this filter should be interpreted.
+  # Accepted values: NONE, BLACKLIST, WHITELIST.
+  mode: BLACKLIST
+  # Values used by the selected filter mode.
+  values:
+  - ENDER_DRAGON
+  - WITHER
+  - WARDEN
+  - PLAYER
+# The material ID for the consumable vessel item.
+# Nexo custom items are supported.
+item: amethyst_shard
+# Display name for the empty consumable vessel component.
+display-name: <light_purple>Fragile Vessel</light_purple>
+# Lore lines for the empty consumable vessel item.
+lore:
+- <gray>Right-click a mob to capture it.</gray>
+- <red>Breaks upon release.</red>
+# Lore lines for the filled consumable vessel item.
+filled-lore:
+- <gray>Right-click to release the captured mob.</gray>
+- <red>Breaks upon release.</red>
+- <reset>
+- <gray>Contains <white><entity_name></white> of type <white><entity_type></white>.</gray>
+# Event configuration
+events:
+  # Capture event settings for this module
+  capture:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        capture:
+          type: entity.item.pickup
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+  # Release event settings for this module
+  release:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        release:
+          type: entity.item.break
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+`;
+export const consumableModuleName = 'modules/consumable.yml';
+
+<Code code={consumableModule} lang="yml" title={consumableModuleName} />
+
+### Reusable Vessel
+
+This is the default configuration for the reusable vessel, which allows players to capture and release mobs using reusable vessels.
+
+export const reusableModule = `
+# Enable or disable the use of reusable vessels.
+enabled: true
+# Exclude certain mobs from reusable vessel capture and release logic.
+exclusions:
+  # Should tamed mobs be excluded from capture?
+  tamed: true
+  # Should named mobs be excluded from capture?
+  named: false
+  # Spawn reasons allowed for capture.
+  # Accepted values: NONE, BLACKLIST, WHITELIST.
+  spawn-reasons:
+    # How this filter should be interpreted.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    mode: BLACKLIST
+    # Values used by the selected filter mode.
+    values:
+    - CUSTOM
+# World filter for reusable vessels.
+worlds:
+  # How this filter should be interpreted.
+  # Accepted values: NONE, BLACKLIST, WHITELIST.
+  mode: NONE
+  # Values used by the selected filter mode.
+  values: []
+# Entity filter for reusable vessels.
+entities:
+  # How this filter should be interpreted.
+  # Accepted values: NONE, BLACKLIST, WHITELIST.
+  mode: BLACKLIST
+  # Values used by the selected filter mode.
+  values:
+  - ENDER_DRAGON
+  - WITHER
+  - WARDEN
+  - PLAYER
+# The material ID for the reusable vessel item.
+# Nexo custom items are supported.
+item: amethyst_shard
+# Display name for the empty reusable vessel component.
+display-name: <dark_aqua>Enduring Vessel</dark_aqua>
+# Lore lines for the empty reusable vessel item.
+lore:
+- <gray>Right-click a mob to capture it.</gray>
+- <green>Can be reused multiple times.</green>
+# Lore lines for the filled reusable vessel item.
+filled-lore:
+- <gray>Right-click to release the captured mob.</gray>
+- <green>Can be reused multiple times.</green>
+- <reset>
+- <gray>Contains <white><entity_name></white> of type <white><entity_type></white>.</gray>
+# Event configuration
+events:
+  # Capture event settings for this module
+  capture:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        capture:
+          type: entity.item.pickup
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+  # Release event settings for this module
+  release:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        release:
+          type: entity.item.break
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+`;
+export const reusableModuleName = 'modules/reusable.yml';
+
+<Code code={reusableModule} lang="yml" title={reusableModuleName} />

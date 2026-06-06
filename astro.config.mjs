@@ -37,16 +37,8 @@ export default defineConfig({
                         icon: 'rocket',
                         items: [
                             { 
-                                label: 'Gensou', 
-                                items: [{ autogenerate: { directory: 'projects/gensou' } }]
-                            },
-                            { 
                                 label: 'Junction', 
                                 items: [{ autogenerate: { directory: 'projects/junction' } }]
-                            },
-                            { 
-                                label: 'Ordinal', 
-                                items: [{ autogenerate: { directory: 'projects/ordinal' } }]
                             },
                             { 
                                 label: 'PartyAnimals',
@@ -55,6 +47,21 @@ export default defineConfig({
                                     { label: 'Features', items: [{ autogenerate: { directory: 'projects/partyanimals/features' } }] },
                                     { label: 'Configuration', items: [{ autogenerate: { directory: 'projects/partyanimals/configuration' } }] },
                                 ]
+                            },
+                            { 
+                                label: 'Vessel', 
+                                items: [
+                                    { label: 'Introduction', link: 'projects/vessel' },
+                                    { label: 'Features', items: [{ autogenerate: { directory: 'projects/vessel/features' } }] },
+                                    { label: 'Configuration', items: [{ autogenerate: { directory: 'projects/vessel/configuration' } }] },]
+                            },
+                            { 
+                                label: 'Gensou', 
+                                items: [{ autogenerate: { directory: 'projects/gensou' } }]
+                            },
+                            { 
+                                label: 'Ordinal', 
+                                items: [{ autogenerate: { directory: 'projects/ordinal' } }]
                             },
                         ],
                     },

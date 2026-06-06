@@ -1,0 +1,19 @@
+---
+title: Configuration
+description: Default configuration files and explanations for the Vessel plugin.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+Below you can find the default configuration files for the Vessel plugin, including explanations for each setting.
+
+export const configFile = `
+# Enable debug mode to see detailed logs in the console.
+debug: false
+# The cooldown time in milliseconds between capture and release actions to prevent rapid reuse.
+# Recommended minimum value: 500.
+cooldown: 500
+`;
+export const configFileName = 'config.yml';
+
+<Code code={configFile} lang="yml" title={configFileName} />

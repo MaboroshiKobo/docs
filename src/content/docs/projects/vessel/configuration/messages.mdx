@@ -1,0 +1,71 @@
+---
+title: Messages
+description: Default messages configuration file.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+export const messagesFile = `
+# The global prefix used in messages. Use <prefix> in other messages to include it.
+prefix: <color:#F2CDCD><bold>Vessel</bold> ➟ </color>
+# Core gameplay messages for capturing and releasing entities.
+general:
+  # Message shown when a player lacks permission to use a vessel.
+  cannot-use-vessel: <red>You cannot use this vessel!</red>
+  # Message shown when a player lacks permission to capture this entity.
+  cannot-capture: <red>You cannot capture <entity_type>!</red>
+  # Message shown when a player lacks permission to release this entity.
+  cannot-release: <red>You cannot release <entity_type>!</red>
+  # Message shown when a player tries to capture another player's tamed pet.
+  cannot-capture-tamed: <red>You cannot capture someone else's pet!</red>
+  # Message shown when a player tries to release a tamed mob that is excluded.
+  cannot-release-tamed: <red>You cannot release this pet!</red>
+  # Message shown when a player tries to capture a named mob while named mobs are excluded.
+  cannot-capture-named: <red>You cannot capture this named mob!</red>
+  # Message shown when a player tries to release a named mob while named mobs are excluded.
+  cannot-release-named: <red>You cannot release this named mob!</red>
+  # Message shown when a player attempts to use the vessel on a blacklisted entity or spawn reason.
+  blacklisted-entity: <red>You cannot use the vessel on <entity_type>!</red>
+  # Message shown when a player cannot capture in the current protected area.
+  cannot-capture-here: <red>You cannot capture mobs here!</red>
+  # Message shown when a player cannot capture in the current world.
+  cannot-capture-world: <red>You cannot capture mobs in <world>!</red>
+  # Message shown when a player cannot release in the current protected area.
+  cannot-release-here: <red>You cannot release mobs here!</red>
+  # Message shown when a player cannot release in the current world.
+  cannot-release-world: <red>You cannot release mobs in <world>!</red>
+# Command-related messages and responses.
+commands:
+  # Plugin info message shown by /vessel. Supports <version> and <authors> tags.
+  plugin-info: <green>Vessel Plugin v<version> by <authors>.</green>
+  # Invalid type message
+  invalid-type: '<red>Invalid vessel type or module disabled! Valid types: consumable,
+    reusable.</red>'
+  # Invalid amount message. Supports <min> and <max> tags.
+  invalid-amount: <red>Amount must be between <min> and <max>.</red>
+  # Message sent to command sender when giving vessels. Supports <target>, <amount>, <type> tags.
+  give-sender: <green>Gave <target> <amount> <type> vessel(s).</green>
+  # Message sent to player when receiving vessels. Supports <amount>, <type> tags.
+  give-player: <green>You received <amount> <type> vessel(s).</green>
+# Administrative messages.
+admin:
+  # Message shown when reload succeeds.
+  reload-success: <green>Vessel configuration reloaded.</green>
+  # Message shown when reload fails.
+  reload-fail: '<red>Failed to reload configuration: <error></red>'
+# Help command messages and entry format.
+help:
+  # Help header line shown by /vessel help
+  header: <prefix> <white>Vessel commands:</white>
+  # Show usage for plugin info
+  show: <prefix> <white>/vessel</white> - <gray>Shows plugin info</gray>
+  # Help: give usage
+  give: '<prefix> <white>/vessel give <player> <type> <amount> [-s]</white> - <gray>Give
+    vessels (permission: vessel.command.give)</gray>'
+  # Help: reload usage
+  reload: '<prefix> <white>/vessel reload</white> - <gray>Reloads plugin config (permission:
+    vessel.command.reload)</gray>'
+`;
+export const messagesFileName = 'messages.yml';
+
+<Code code={messagesFile} lang="yml" title={messagesFileName} />
