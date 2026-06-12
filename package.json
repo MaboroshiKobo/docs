@@ -19,6 +19,6 @@
     "starlight-sidebar-topics": "^0.7.2"
   },
   "devDependencies": {
-    "wrangler": "^4.99.0"
+    "wrangler": "^4.100.0"
   }
 }
