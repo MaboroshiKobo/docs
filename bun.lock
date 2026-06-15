@@ -11,7 +11,7 @@
         "sharp": "^0.35.1",
         "starlight-page-actions": "^0.6.1",
         "starlight-sidebar-swipe": "^0.2.0",
-        "starlight-sidebar-topics": "^0.7.2",
+        "starlight-sidebar-topics": "^0.8.0",
       },
       "devDependencies": {
         "wrangler": "^4.100.0",
@@ -835,7 +835,7 @@
 
     "starlight-sidebar-swipe": ["starlight-sidebar-swipe@0.2.0", "", { "peerDependencies": { "@astrojs/starlight": ">=0.38" } }, "sha512-+krC5fbHjKjztStsGaGgaR5KaOahlPfwb32lYKbo1kzPR9v4Li95VM0tj+2qibilhS9cBq/okWdxN74fyccmBw=="],
 
-    "starlight-sidebar-topics": ["starlight-sidebar-topics@0.7.2", "", { "dependencies": { "picomatch": "^4.0.3" }, "peerDependencies": { "@astrojs/starlight": ">=0.38.0" } }, "sha512-eKNQqA6EdNJTnAReVFZciPzuoBBwXs7ynNZRAukYSsh6pGfPtS9l0F+knIUbEP+eFQT4Vcbr9SxxiXEZtjowHw=="],
+    "starlight-sidebar-topics": ["starlight-sidebar-topics@0.8.0", "", { "dependencies": { "picomatch": "^4.0.3" }, "peerDependencies": { "@astrojs/starlight": ">=0.38.0" } }, "sha512-hE8+w2vNL13h6cq3UJGl05milJQ3+1BSlhaV5V4a993YzYczU6uLAj6jfUDKQ2mmgkdVWp8/UNDF4Je/rQXNQw=="],
 
     "stream-replace-string": ["stream-replace-string@2.0.0", "", {}, "sha512-TlnjJ1C0QrmxRNrON00JvaFFlNh5TTG00APw23j74ET7gkQpTASi6/L2fuiav8pzK715HXtUeClpBTw2NPSn6w=="],
 
