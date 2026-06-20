@@ -1,0 +1,224 @@
+---
+title: Modules
+description: Default module files and explanations for the Vessel plugin.
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+Below you can find the default module files for the Vessel plugin, including explanations for each setting.
+
+### Consumable Vessel
+
+This is the default template for the consumable vessel, which allows players to capture and release mobs using single-use vessels.
+
+export const consumableConfig = `
+# Item settings.
+item:
+  # The material ID for the empty vessel.
+  # Nexo custom items are supported.
+  material: egg
+  # The default material ID for the filled vessel.
+  # Nexo custom items are supported.
+  filled-material: sniffer_egg
+  # Display name for the empty vessel.
+  display-name: <light_purple>Fragile Vessel</light_purple>
+  # Lore lines for the empty vessel.
+  lore:
+  - <gray>Right-click a mob to capture it.</gray>
+  - <red>Breaks upon release.</red>
+  # Lore lines for the filled vessel.
+  filled-lore:
+  - <gray>Right-click to release the captured mob.</gray>
+  - <red>Breaks upon release.</red>
+  - <reset>
+  - <gray>Contains <white><entity_name></white> of type <white><entity_type></white>.</gray>
+  # Specific material overrides based on the captured entity type.
+  # If an entity is not listed here, it falls back to 'filled-material' above.
+  material-overrides:
+    <entity_type>: <entity_type>_spawn_egg
+# Vessel behavior settings.
+behavior:
+  # Does the item get consumed upon releasing an entity?
+  consume-on-release: true
+  # Does the item turn back into an empty vessel upon release?
+  return-empty-vessel: false
+# Vessel restriction settings.
+restrictions:
+  # Exclude certain mobs based on specific states (tamed status, custom names, etc.).
+  exclusions:
+    # Should a player be blocked from capturing their own tamed pets?
+    tamed: false
+    # Should a player be blocked from capturing pets tamed by other players?
+    others-tamed: true
+    # Should named mobs be excluded from capture?
+    named: false
+    # Spawn reasons filtered from capture.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    spawn-reasons:
+      # How this filter should be interpreted.
+      # Accepted values: NONE, BLACKLIST, WHITELIST.
+      mode: NONE
+      # Values used by the selected filter mode.
+      values:
+      - CUSTOM
+  # World filter rules for vessel usage.
+  worlds:
+    # How this filter should be interpreted.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    mode: NONE
+    # Values used by the selected filter mode.
+    values: []
+  # Entity filter rules for vessel usage.
+  # For a full list of supported group permissions and their included mobs, see:
+  # https://docs.maboroshi.org/projects/vessel/features/commands-permissions/
+  entities:
+    # How this filter should be interpreted.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    mode: BLACKLIST
+    # Values used by the selected filter mode.
+    values:
+    - ENDER_DRAGON
+    - WITHER
+    - WARDEN
+# Event configuration.
+events:
+  # Capture event settings for this module
+  capture:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        capture:
+          type: entity.item.pickup
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+  # Release event settings for this module
+  release:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        release:
+          type: entity.item.break
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+`;
+export const consumableFile = 'vessels/consumable.yml';
+
+<Code code={consumableConfig} lang="yml" title={consumableFile} />
+
+### Reusable Vessel
+
+This is the default template for the reusable vessel, which allows players to capture and release mobs as many times as they want.
+
+export const reusableConfig = `
+# Item settings.
+item:
+  # The material ID for the empty vessel.
+  # Nexo custom items are supported.
+  material: egg
+  # The default material ID for the filled vessel.
+  # Nexo custom items are supported.
+  filled-material: sniffer_egg
+  # Display name for the empty vessel.
+  display-name: <dark_aqua>Enduring Vessel</dark_aqua>
+  # Lore lines for the empty vessel.
+  lore:
+  - <gray>Right-click a mob to capture it.</gray>
+  - <green>Can be reused multiple times.</green>
+  # Lore lines for the filled vessel.
+  filled-lore:
+  - <gray>Right-click to release the captured mob.</gray>
+  - <green>Can be reused multiple times.</green>
+  - <reset>
+  - <gray>Contains <white><entity_name></white> of type <white><entity_type></white>.</gray>
+  # Specific material overrides based on the captured entity type.
+  # If an entity is not listed here, it falls back to 'filled-material' above.
+  material-overrides:
+    <entity_type>: <entity_type>_spawn_egg
+# Vessel behavior settings.
+behavior:
+  # Does the item get consumed upon releasing an entity?
+  consume-on-release: true
+  # Does the item turn back into an empty vessel upon release?
+  return-empty-vessel: true
+# Vessel restriction settings.
+restrictions:
+  # Exclude certain mobs based on specific states (tamed status, custom names, etc.).
+  exclusions:
+    # Should a player be blocked from capturing their own tamed pets?
+    tamed: false
+    # Should a player be blocked from capturing pets tamed by other players?
+    others-tamed: true
+    # Should named mobs be excluded from capture?
+    named: false
+    # Spawn reasons filtered from capture.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    spawn-reasons:
+      # How this filter should be interpreted.
+      # Accepted values: NONE, BLACKLIST, WHITELIST.
+      mode: NONE
+      # Values used by the selected filter mode.
+      values:
+      - CUSTOM
+  # World filter rules for vessel usage.
+  worlds:
+    # How this filter should be interpreted.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    mode: NONE
+    # Values used by the selected filter mode.
+    values: []
+  # Entity filter rules for vessel usage.
+  # For a full list of supported group permissions and their included mobs, see:
+  # https://docs.maboroshi.org/projects/vessel/features/commands-permissions/
+  entities:
+    # How this filter should be interpreted.
+    # Accepted values: NONE, BLACKLIST, WHITELIST.
+    mode: BLACKLIST
+    # Values used by the selected filter mode.
+    values:
+    - ENDER_DRAGON
+    - WITHER
+    - WARDEN
+# Event configuration.
+events:
+  # Capture event settings for this module
+  capture:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        capture:
+          type: entity.item.pickup
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+  # Release event settings for this module
+  release:
+    # Enable this event processing block.
+    enabled: true
+    # Visual/Audio effects to play when this event triggers.
+    effects:
+      sounds:
+        release:
+          type: entity.item.break
+          volume: 1.0
+          pitch: 1.0
+      particles: {}
+    # Actions that execute when the event triggers.
+    actions: {}
+`;
+export const reusableFile = 'vessels/reusable.yml';
+
+<Code code={reusableConfig} lang="yml" title={reusableFile} />

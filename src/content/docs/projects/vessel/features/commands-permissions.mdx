@@ -25,10 +25,8 @@ description: Detailed list of commands and permissions for Vessel.
 
 The following permissions control how players interact with vessels in the world.
 
-* `vessel.use.consumable`
-  * Description: Allows usage of consumable tier vessels.
-* `vessel.use.reusable`
-  * Description: Allows usage of reusable tier vessels.
+* `vessel.use.<template_id>`
+  * Description: Allows a player to use a specific vessel template. This matches the name of any `.yml` file in your `vessels/` folder (e.g., `vessel.use.consumable`, `vessel.use.reusable`, or `vessel.use.admin`).
 * `vessel.capture.*`
   * Description: Wildcard permission to capture any allowed mob type.
 * `vessel.release.*`
