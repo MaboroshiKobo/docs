@@ -10,7 +10,7 @@
         "astro": "7.2.2",
         "sharp": "^0.35.3",
         "starlight-page-actions": "^0.7.0",
-        "starlight-sidebar-swipe": "^0.2.0",
+        "starlight-sidebar-swipe": "^0.3.2",
         "starlight-sidebar-topics": "^0.8.0",
       },
       "devDependencies": {
@@ -955,7 +955,7 @@
 
     "starlight-page-actions": ["starlight-page-actions@0.7.0", "", { "dependencies": { "tidymd": "0.1.0", "vite-plugin-static-copy": "4.1.1", "vite-plugin-virtual": "0.5.0" }, "peerDependencies": { "@astrojs/starlight": ">=0.36.0", "astro": ">=5.6.0" } }, "sha512-zZFtBB1x5KKfgh/P0iki0JJleaAu2I0isnqze1B2ThPMlhUrZEmMyHouq7Altff6mmiSSQRvAhHGK7kP5xwLdQ=="],
 
-    "starlight-sidebar-swipe": ["starlight-sidebar-swipe@0.2.0", "", { "peerDependencies": { "@astrojs/starlight": ">=0.38" } }, "sha512-+krC5fbHjKjztStsGaGgaR5KaOahlPfwb32lYKbo1kzPR9v4Li95VM0tj+2qibilhS9cBq/okWdxN74fyccmBw=="],
+    "starlight-sidebar-swipe": ["starlight-sidebar-swipe@0.3.2", "", { "peerDependencies": { "@astrojs/starlight": ">=0.41" } }, "sha512-KR1K5EDsyVehBrivY1EwiRtggYjD2QVVTyCKrr1wqPD5gDEvTPtxljs5H2hVb93BTLJIZGmpWElnhshdW9jO/Q=="],
 
     "starlight-sidebar-topics": ["starlight-sidebar-topics@0.8.0", "", { "dependencies": { "picomatch": "^4.0.3" }, "peerDependencies": { "@astrojs/starlight": ">=0.38.0" } }, "sha512-hE8+w2vNL13h6cq3UJGl05milJQ3+1BSlhaV5V4a993YzYczU6uLAj6jfUDKQ2mmgkdVWp8/UNDF4Je/rQXNQw=="],
 
