@@ -13,7 +13,7 @@
     "@astrojs/starlight": "0.42.4",
     "@fontsource-variable/anuphan": "^5.3.0",
     "astro": "7.3.5",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "starlight-page-actions": "^0.7.1",
     "starlight-sidebar-swipe": "^0.3.2",
     "starlight-sidebar-topics": "^0.9.0"
